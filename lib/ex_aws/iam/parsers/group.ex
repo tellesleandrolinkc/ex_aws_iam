@@ -1,14 +1,16 @@
-defmodule ExAws.Iam.Parsers.Group do
+defmodule ExAws.IAM.Parsers.Group do
   @moduledoc """
   Defines parsers for handling AWS IAM `Group` query reponses.
 
   """
 
   import SweetXml, only: [sigil_x: 2]
-  import ExAws.Iam.Utils, only: [response_metadata_path: 0]
+  import ExAws.IAM.Utils, only: [response_metadata_path: 0]
 
   @doc """
   Parses XML from IAM `ListGroups` response.
+  Parses XML from IAM `GetGroup` response.
+  Parses XML from IAM `CreateGroup` response.
 
   """
   def parse(xml, "ListGroups") do
@@ -30,10 +32,6 @@ defmodule ExAws.Iam.Parsers.Group do
     )
   end
 
-  @doc """
-  Parses XML from IAM `GetGroup` response.
-
-  """
   def parse(xml, "GetGroup") do
     SweetXml.xpath(xml, ~x"//GetGroupResponse",
       get_group_result: [
@@ -44,10 +42,6 @@ defmodule ExAws.Iam.Parsers.Group do
     )
   end
 
-  @doc """
-  Parses XML from IAM `CreateGroup` response.
-
-  """
   def parse(xml, "CreateGroup") do
     SweetXml.xpath(xml, ~x"//CreateGroupResponse",
       create_group_result: [

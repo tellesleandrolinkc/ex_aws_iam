@@ -1,14 +1,15 @@
-defmodule ExAws.Iam.Parsers.Role do
+defmodule ExAws.IAM.Parsers.Role do
   @moduledoc """
   Defines parsers for handling AWS IAM `Role` query reponses.
 
   """
 
   import SweetXml, only: [sigil_x: 2]
-  import ExAws.Iam.Utils, only: [response_metadata_path: 0]
+  import ExAws.IAM.Utils, only: [response_metadata_path: 0]
 
   @doc """
   Parses XML from IAM `ListRoles` response.
+  Parses XML from IAM `ListRoleTags` response.
 
   """
   def parse(xml, "ListRoles") do
@@ -33,10 +34,6 @@ defmodule ExAws.Iam.Parsers.Role do
     )
   end
 
-  @doc """
-  Parses XML from IAM `ListRoleTags` response.
-
-  """
   def parse(xml, "ListRoleTags") do
     SweetXml.xpath(xml, ~x"//ListRoleTagsResponse",
       list_role_tags_result: [

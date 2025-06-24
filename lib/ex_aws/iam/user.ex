@@ -1,4 +1,4 @@
-defmodule ExAws.Iam.User do
+defmodule ExAws.IAM.User do
   @moduledoc """
   A struct that represents an IAM user.
 
@@ -13,7 +13,7 @@ defmodule ExAws.Iam.User do
 
   defstruct arn: nil, create_date: nil, path: "/", user_name: nil, user_id: nil
 
-  @type t :: %ExAws.Iam.User{
+  @type t :: %ExAws.IAM.User{
           arn: String.t(),
           create_date: String.t(),
           path: String.t(),
@@ -36,7 +36,7 @@ defmodule ExAws.Iam.User do
   end
 
   defp to_struct(user) do
-    %ExAws.Iam.User{
+    %ExAws.IAM.User{
       arn: user[:arn],
       create_date: user[:create_date],
       path: user[:path],

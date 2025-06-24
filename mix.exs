@@ -1,17 +1,17 @@
-defmodule Iam.MixProject do
+defmodule IAM.MixProject do
   use Mix.Project
 
   def project do
     [
       app: :ex_aws_iam,
-      version: "0.1.1",
-      elixir: "~> 1.7",
+      version: "1.0.0",
+      elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
       description: description(),
       deps: deps(),
       name: "ExAws.IAM",
-      source_url: "https://github.com/abitdodgy/ex_aws_iam",
-      homepage_url: "https://github.com/abitdodgy/ex_aws_iam",
+      source_url: "https://github.com/tellesleandrolinkc/ex_aws_iam.git",
+      homepage_url: "https://github.com/tellesleandrolinkc/ex_aws_iam.git",
       package: package(),
       docs: [
         main: "readme",
@@ -30,9 +30,9 @@ defmodule Iam.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_aws, "~> 2.0"},
-      {:sweet_xml, "~> 0.6"},
-      {:ex_doc, ">= 0.0.0", only: :dev}
+      {:ex_aws, "~> 2.5"},
+      {:ex_doc, "~> 0.38", only: :dev, runtime: false, warn_if_outdated: true},
+      {:sweet_xml, "~> 0.7"}
     ]
   end
 
@@ -43,8 +43,8 @@ defmodule Iam.MixProject do
   defp package do
     [
       licenses: ["MIT"],
-      maintainers: ["Mohamad El-Husseini"],
-      links: %{github: "https://github.com/abitdodgy/ex_aws_iam"}
+      maintainers: ["Leandro Telles"],
+      links: %{github: "https://github.com/tellesleandrolinkc/ex_aws_iam"}
     ]
   end
 end

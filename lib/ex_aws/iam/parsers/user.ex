@@ -1,14 +1,16 @@
-defmodule ExAws.Iam.Parsers.User do
+defmodule ExAws.IAM.Parsers.User do
   @moduledoc """
   Defines parsers for handling AWS IAM `User` query reponses.
 
   """
 
   import SweetXml, only: [sigil_x: 2]
-  import ExAws.Iam.Utils, only: [response_metadata_path: 0]
+  import ExAws.IAM.Utils, only: [response_metadata_path: 0]
 
   @doc """
   Parses XML from IAM `ListUsers` response.
+  Parses XML from IAM `GetUser` response.
+  Parses XML from IAM `CreateUser` response.
 
   """
   def parse(xml, "ListUsers") do
@@ -30,10 +32,6 @@ defmodule ExAws.Iam.Parsers.User do
     )
   end
 
-  @doc """
-  Parses XML from IAM `GetUser` response.
-
-  """
   def parse(xml, "GetUser") do
     SweetXml.xpath(xml, ~x"//GetUserResponse",
       get_user_result: [
@@ -44,10 +42,6 @@ defmodule ExAws.Iam.Parsers.User do
     )
   end
 
-  @doc """
-  Parses XML from IAM `CreateUser` response.
-
-  """
   def parse(xml, "CreateUser") do
     SweetXml.xpath(xml, ~x"//CreateUserResponse",
       create_user_result: [

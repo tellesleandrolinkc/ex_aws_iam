@@ -1,11 +1,13 @@
 # ExAws IAM
 
+### This is a fork of the library ExAws.IAM available at https://github.com/abitdodgy/ex_aws_iam with added PutUserPolicy function.
+
 Easily interact with the AWS IAM API to work with users, access keys, and any other entity. This is an IAM service module for [ExAws](https://github.com/ex-aws/ex_aws).
 
 The lib provides a low-level `operation/3` function to build any IAM API action.
 
 ```elixir
-op = Iam.operation(:list_users, max_items: 50, path: "/my/path/")
+op = IAM.operation(:list_users, max_items: 50, path: "/my/path/")
 %ExAws.Operation.Query{
   action: "ListUsers",
   params: %{
@@ -14,7 +16,7 @@ op = Iam.operation(:list_users, max_items: 50, path: "/my/path/")
     "Path" => "/my/path/",
     "Version" => "2010-05-08"
   },
-  parser: &ExAws.Iam.Parser.parse/2,
+  parser: &ExAws.IAM.Parser.parse/2,
   path: "/my/path/",
   service: :iam
 }
@@ -44,7 +46,7 @@ resp = ExAws.request(op)
 The lib also provides higher-level convenience functions for interacting with specific services.
 
 ```elixir
-op = Iam.create_user("my_user", path: "/my/path")
+op = IAM.create_user("my_user", path: "/my/path")
 %ExAws.Operation.Query{
   action: "CreateUser",
   params: %{
@@ -53,7 +55,7 @@ op = Iam.create_user("my_user", path: "/my/path")
     "UserName" => "my_user",
     "Version" => "2010-05-08"
   },
-  parser: &ExAws.Iam.Parser.parse/2,
+  parser: &ExAws.IAM.Parser.parse/2,
   path: "/my/path",
   service: :iam
 }
@@ -65,9 +67,9 @@ You can also return entity structs.
 user =
   op
   |> ExAws.request()
-  |> Iam.to_user()
+  |> IAM.to_user()
 
-%Iam.User{
+%IAM.User{
   arn: "arn:aws:iam::085326204011:user/my_user",
   create_date: "2018-10-17T13:36:28Z",
   path: "/my/path/",
@@ -75,7 +77,7 @@ user =
   user_id: "AIDAJMIUVQAU2TW666HH2"
 }
 
-Iam.delete_user("my_user")
+IAM.delete_user("my_user")
 ```
 
 Parsers are currently implemented for the following actions:
@@ -94,6 +96,7 @@ Parsers are currently implemented for the following actions:
   * ListRoles
   * ListRoleTags
   * ListUsers
+  * PutUserPolicy
   * UpdateAccessKey
   * UpdateGroup
   * UpdateUser
@@ -101,7 +104,7 @@ Parsers are currently implemented for the following actions:
 You can also provider your own parser as long as it implements a `parse/2` function.
 
 ```elixir
-Iam.operation(:list_users, parser: &MyParser.parse/2)
+IAM.operation(:list_users, parser: &MyParser.parse/2)
 ```
 
 ## Installation
@@ -111,10 +114,8 @@ Ensure that both `ex_aws`, its dependencies, and `ex_aws_iam` are in your list o
 ```elixir
 def deps do
   [
-    {:ex_aws, "~> 2.0"},
-    {:ex_aws_iam, "~> 0.1.0"},
-    {:hackney, "~> 1.9"},
-    {:sweet_xml, "~> 0.6"}
+    {:ex_aws, "~> 2.5"},
+    {:ex_aws_iam, "~> 1.0"}
   ]
 end
 ```
@@ -129,7 +130,7 @@ config :ex_aws,
 
 ## Usage
 
-[See the documentation](https://hexdocs.pm/ex_aws_iam/ExAws.Iam.html) for details.
+[See the documentation](https://hexdocs.pm/ex_aws_iam/ExAws.IAM.html) for details.
 
 ## License
 

@@ -1,9 +1,9 @@
-defmodule ExAws.Iam.Parsers.UserTest do
+defmodule ExAws.IAM.Parsers.UserTest do
   use ExUnit.Case
 
-  import ExAws.Iam.TestHelper, only: [read_file: 2]
+  import ExAws.IAM.TestHelper, only: [read_file: 2]
 
-  alias ExAws.Iam.Parser
+  alias ExAws.IAM.Parser
 
   test "list/2" do
     xml = read_file("user", "list")

@@ -1,10 +1,10 @@
-defmodule ExAws.Iam do
+defmodule ExAws.IAM do
   @moduledoc """
   Generates ExAws operations for making IAM API requests.
 
   You can use the low-level `operation/2` to create any operation.
 
-      iex> ExAws.Iam.operation(:list_users, max_items: 50, path: "/my/path/")
+      iex> ExAws.IAM.operation(:list_users, max_items: 50, path: "/my/path/")
       %ExAws.Operation.Query{
         action: "ListUsers",
         params: %{
@@ -13,14 +13,14 @@ defmodule ExAws.Iam do
           "Path" => "/my/path/",
           "Version" => "2010-05-08"
         },
-        parser: &ExAws.Iam.Parser.parse/2,
+        parser: &ExAws.IAM.Parser.parse/2,
         path: "/my/path/",
         service: :iam
       }
 
   You can also use one of the higher-level convenience functions.
 
-      iex> ExAws.Iam.list_users(max_items: 50, path: "/my/path/")
+      iex> ExAws.IAM.list_users(max_items: 50, path: "/my/path/")
       %ExAws.Operation.Query{
         action: "ListUsers",
         params: %{
@@ -29,7 +29,7 @@ defmodule ExAws.Iam do
           "Path" => "/my/path/",
           "Version" => "2010-05-08"
         },
-        parser: &ExAws.Iam.Parser.parse/2,
+        parser: &ExAws.IAM.Parser.parse/2,
         path: "/my/path/",
         service: :iam
       }
@@ -50,6 +50,7 @@ defmodule ExAws.Iam do
     * ListRoles
     * ListRoleTags
     * ListUsers
+    * PutUserPolicy
     * UpdateAccessKey
     * UpdateGroup
     * UpdateUser
@@ -70,10 +71,10 @@ defmodule ExAws.Iam do
 
   """
 
-  import ExAws.Iam.Utils, only: [list_to_camelized_map: 1, camelize: 1]
+  import ExAws.IAM.Utils, only: [list_to_camelized_map: 1, camelize: 1]
 
   alias ExAws
-  alias ExAws.Iam.{AccessKey, Parser, User}
+  alias ExAws.IAM.{AccessKey, Parser, User}
 
   @shared_opts [version: "2010-05-08"]
 
@@ -427,6 +428,31 @@ defmodule ExAws.Iam do
   """
   def list_roles(opts \\ []) do
     operation(:list_roles, opts)
+  end
+
+  @doc """
+  Put a ExAws policy to a user.
+
+  ## Parameters
+
+    * `username` - The name of the user to whom the policy will be attached.
+    * `policy_name` - The name of the policy to add or modify.
+    * `policy_document` - The JSON document containing the policy.
+
+  ## Options
+
+    * `:marker` - Use this parameter only when paginating results.
+
+    * `:max_items` - Use this only when paginating results to indicate
+      the maximum number of items you want in the response.
+
+    * `:path_prefix` - The path prefix for filtering the results.
+
+  See shared options in moduledoc.
+
+  """
+  def put_user_policy(username, policy_name, policy_document, opts \\ []) do
+    operation(:put_user_policy, [user_name: username, policy_name: policy_name, policy_document: policy_document] ++ opts)
   end
 
   @doc """

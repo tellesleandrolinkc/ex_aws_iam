@@ -1,4 +1,4 @@
-defmodule ExAws.Iam.Parser do
+defmodule ExAws.IAM.Parser do
   @moduledoc """
   An interface for parsing IAM user query responses.
 
@@ -10,10 +10,11 @@ defmodule ExAws.Iam.Parser do
 
   """
 
-  alias ExAws.Iam.Parsers.{
+  alias ExAws.IAM.Parsers.{
     AccessKey,
     Group,
     Metadata,
+    Policy,
     Role,
     User
   }
@@ -79,5 +80,13 @@ defmodule ExAws.Iam.Parser do
 
   defp dispatch(xml, action) when action in @metadata_only_actions do
     Metadata.parse(xml, action)
+  end
+
+  @policy_actions ~w[
+    PutUserPolicy
+  ]
+
+  defp dispatch(xml, action) when action in @policy_actions do
+    Policy.parse(xml, action)
   end
 end

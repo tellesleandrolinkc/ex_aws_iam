@@ -1,4 +1,4 @@
-defmodule ExAws.Iam.AccessKey do
+defmodule ExAws.IAM.AccessKey do
   @moduledoc """
   A struct that represents an IAM access key.
 
@@ -20,7 +20,7 @@ defmodule ExAws.Iam.AccessKey do
             status: nil,
             user_name: nil
 
-  @type t :: %ExAws.Iam.AccessKey{
+  @type t :: %ExAws.IAM.AccessKey{
           access_key_id: String.t(),
           access_key_selector: String.t(),
           create_date: String.t(),
@@ -44,7 +44,7 @@ defmodule ExAws.Iam.AccessKey do
   end
 
   defp access_key_to_struct(access_key) do
-    %ExAws.Iam.AccessKey{
+    %ExAws.IAM.AccessKey{
       access_key_id: access_key[:access_key_id],
       access_key_selector: access_key[:access_key_selector],
       create_date: access_key[:create_date],

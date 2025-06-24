@@ -1,4 +1,4 @@
-defmodule ExAws.Iam.Utils do
+defmodule ExAws.IAM.Utils do
   @moduledoc false
 
   import SweetXml, only: [sigil_x: 2]
@@ -15,7 +15,7 @@ defmodule ExAws.Iam.Utils do
 
   ## Examples
 
-      iex> ExAws.Iam.Utils.list_to_camelized_map([user_name: "my_user"])
+      iex> ExAws.IAM.Utils.list_to_camelized_map([user_name: "my_user"])
       %{"UserName" => "my_user"}
 
   """
@@ -30,7 +30,7 @@ defmodule ExAws.Iam.Utils do
 
   ## Examples
 
-      iex> ExAws.Iam.Utils.camelize(:user_name)
+      iex> ExAws.IAM.Utils.camelize(:user_name)
       "UserName"
 
   """

@@ -1,14 +1,16 @@
-defmodule ExAws.Iam.Parsers.AccessKey do
+defmodule ExAws.IAM.Parsers.AccessKey do
   @moduledoc """
   Defines parsers for handling AWS IAM `AccessKey` query reponses.
 
   """
 
   import SweetXml, only: [sigil_x: 2]
-  import ExAws.Iam.Utils, only: [response_metadata_path: 0]
+  import ExAws.IAM.Utils, only: [response_metadata_path: 0]
 
   @doc """
   Parses XML from IAM `ListAccessKeys` response.
+  Parses XML from IAM `GetAccessKeyLastUsed` response.
+  Parses XML from IAM `CreateAccessKey` response.
 
   """
   def parse(xml, "ListAccessKeys") do
@@ -29,10 +31,6 @@ defmodule ExAws.Iam.Parsers.AccessKey do
     )
   end
 
-  @doc """
-  Parses XML from IAM `GetAccessKeyLastUsed` response.
-
-  """
   def parse(xml, "GetAccessKeyLastUsed") do
     SweetXml.xpath(xml, ~x"//GetAccessKeyLastUsedResponse",
       get_access_key_last_used_result: [
@@ -49,10 +47,6 @@ defmodule ExAws.Iam.Parsers.AccessKey do
     )
   end
 
-  @doc """
-  Parses XML from IAM `CreateAccessKey` response.
-
-  """
   def parse(xml, "CreateAccessKey") do
     SweetXml.xpath(xml, ~x"//CreateAccessKeyResponse",
       create_access_key_result: [

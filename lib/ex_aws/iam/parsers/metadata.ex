@@ -1,4 +1,4 @@
-defmodule ExAws.Iam.Parsers.Metadata do
+defmodule ExAws.IAM.Parsers.Metadata do
   @moduledoc """
   Defines parsers for handling AWS IAM reponses that
   contain only metadata.
@@ -6,7 +6,7 @@ defmodule ExAws.Iam.Parsers.Metadata do
   """
 
   import SweetXml, only: [sigil_x: 2]
-  import ExAws.Iam.Utils, only: [response_metadata_path: 0]
+  import ExAws.IAM.Utils, only: [response_metadata_path: 0]
 
   @doc """
   A generic parser for responses that contain only metadata.

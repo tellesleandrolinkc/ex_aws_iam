@@ -1,0 +1,5 @@
+<PutUserPolicyResponse xmlns="https://iam.amazonaws.com/doc/2010-05-08/">
+	<ResponseMetadata>
+		<RequestId>81ca4919-d3fb-11e8-986e-5fbe089ad211</RequestId>
+	</ResponseMetadata>
+</PutUserPolicyResponse>

@@ -1,11 +1,11 @@
-defmodule ExAws.IamTest do
+defmodule ExAws.IAMTest do
   use ExUnit.Case
-  doctest ExAws.Iam
+  doctest ExAws.IAM
 
-  import ExAws.Iam.TestHelper, only: [read_file: 2]
+  import ExAws.IAM.TestHelper, only: [read_file: 2]
 
-  alias ExAws.Iam
-  alias ExAws.Iam.{AccessKey, Parser, User}
+  alias ExAws.IAM
+  alias ExAws.IAM.{AccessKey, Parser, User}
 
   defmodule DummyParser do
     def parse(resp, _action), do: resp
@@ -33,7 +33,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.list_users(opts) == expected
+      assert IAM.list_users(opts) == expected
     end
 
     test "get_user/1 returns an ExAws GetUser op struct" do
@@ -49,7 +49,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.get_user("foo") == expected
+      assert IAM.get_user("foo") == expected
     end
 
     test "create_user/1 returns an ExAws CreateUser op struct" do
@@ -72,7 +72,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.create_user("mo", opts) == expected
+      assert IAM.create_user("mo", opts) == expected
     end
 
     test "update_user/1 returns an ExAws UpdateUser op struct" do
@@ -95,7 +95,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.update_user("mo", opts) == expected
+      assert IAM.update_user("mo", opts) == expected
     end
 
     test "delete_user/1 returns an ExAws DeleteUser op struct" do
@@ -111,7 +111,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.delete_user("mo") == expected
+      assert IAM.delete_user("mo") == expected
     end
 
     test "to_user/1 converts GetUser result into a User struct" do
@@ -127,7 +127,7 @@ defmodule ExAws.IamTest do
          }
        }} = response
 
-      assert Iam.to_user(response) ==
+      assert IAM.to_user(response) ==
                %User{
                  arn: user[:arn],
                  create_date: user[:create_date],
@@ -150,7 +150,7 @@ defmodule ExAws.IamTest do
          }
        }} = response
 
-      assert Iam.to_user(response) ==
+      assert IAM.to_user(response) ==
                %User{
                  arn: user[:arn],
                  create_date: user[:create_date],
@@ -173,7 +173,7 @@ defmodule ExAws.IamTest do
          }
        }} = response
 
-      assert Iam.to_user(response) == [
+      assert IAM.to_user(response) == [
                %User{
                  arn: user[:arn],
                  create_date: user[:create_date],
@@ -205,7 +205,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.list_access_keys() == expected
+      assert IAM.list_access_keys() == expected
     end
 
     test "get_access_key_last_used/1 returns an ExAws GetAccessKeyLastUsed op struct" do
@@ -221,7 +221,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.get_access_key_last_used("key") == expected
+      assert IAM.get_access_key_last_used("key") == expected
     end
 
     test "create_access_key/1 returns an ExAws CreateAccessKey op struct" do
@@ -237,7 +237,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.create_access_key("username") == expected
+      assert IAM.create_access_key("username") == expected
     end
 
     test "update_access_key/1 returns an ExAws UpdateAccessKey op struct" do
@@ -254,7 +254,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.update_access_key("key_id", "username") == expected
+      assert IAM.update_access_key("key_id", "username") == expected
     end
 
     test "delete_access_key/1 returns an ExAws DeleteAccessKey op struct" do
@@ -271,7 +271,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.delete_access_key("key_id", "username") == expected
+      assert IAM.delete_access_key("key_id", "username") == expected
     end
 
     test "to_access_key/1 converts ListAccessKeys result into a list of AccessKey structs" do
@@ -287,7 +287,7 @@ defmodule ExAws.IamTest do
          }
        }} = response
 
-      assert Iam.to_access_key(response) == [
+      assert IAM.to_access_key(response) == [
                %AccessKey{
                  access_key_id: access_key[:access_key_id],
                  access_key_selector: access_key[:access_key_selector],
@@ -312,7 +312,7 @@ defmodule ExAws.IamTest do
          }
        }} = response
 
-      assert Iam.to_access_key(response) ==
+      assert IAM.to_access_key(response) ==
                %AccessKey{
                  access_key_id: access_key[:access_key_id],
                  access_key_selector: access_key[:access_key_selector],
@@ -346,7 +346,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.list_groups(opts) == expected
+      assert IAM.list_groups(opts) == expected
     end
 
     test "get_group/1 returns an ExAws GetGroup op struct" do
@@ -362,7 +362,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.get_group("foo") == expected
+      assert IAM.get_group("foo") == expected
     end
 
     test "create_group/1 returns an ExAws CreateGroup op struct" do
@@ -383,7 +383,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.create_group("my_group", opts) == expected
+      assert IAM.create_group("my_group", opts) == expected
     end
 
     test "update_group/1 returns an ExAws UpdateGroup op struct" do
@@ -406,7 +406,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.update_group("my_group", opts) == expected
+      assert IAM.update_group("my_group", opts) == expected
     end
 
     test "delete_group/1 returns an ExAws DeleteGroup op struct" do
@@ -422,7 +422,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.delete_group("my_group") == expected
+      assert IAM.delete_group("my_group") == expected
     end
   end
 
@@ -448,7 +448,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.list_roles(opts) == expected
+      assert IAM.list_roles(opts) == expected
     end
 
     test "list_role_tags/1 returns an ExAws ListRoleTags op struct" do
@@ -464,7 +464,7 @@ defmodule ExAws.IamTest do
         service: :iam
       }
 
-      assert Iam.list_role_tags("foo") == expected
+      assert IAM.list_role_tags("foo") == expected
     end
   end
 end

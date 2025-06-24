@@ -1,7 +1,7 @@
-defmodule ExAws.Iam.Parsers.MetadataTest do
+defmodule ExAws.IAM.Parsers.MetadataTest do
   use ExUnit.Case
 
-  alias ExAws.Iam.Parser
+  alias ExAws.IAM.Parser
 
   @actions ~w[
     UpdateAccessKey
