@@ -3,8 +3,8 @@ defmodule IAM.MixProject do
 
   def project do
     [
-      app: :ex_aws_iam,
-      version: "1.0.0",
+      app: :ex_aws_iam_addon,
+      version: "0.2.0",
       elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
       description: description(),
